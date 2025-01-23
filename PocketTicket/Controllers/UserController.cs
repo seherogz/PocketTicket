@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PocketTicket.Controllers
+namespace PocketTicket.Controllers;
+
+public class UserController : Controller
 {
-    public class UserController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }
