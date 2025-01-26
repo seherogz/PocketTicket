@@ -7,12 +7,13 @@ public class Airport
     public int AirportId { get; set; }
 
     [Required]
-    [Display(Name = "Havaalanı Adı")]
+    [Display(Name = "Airport name")]
     public string Name { get; set; } = string.Empty;
 
     [Required]
-    [Display(Name = "Konum")]
-    public string Location { get; set; } = string.Empty;
+    [Display(Name = "Description")]
+    public string desc { get; set; } = string.Empty;
+    public string logo { get; set; } = string.Empty;
 
     // RELATIONSHIP
     public List<Flight> DepartureFlights { get; set; } = new List<Flight>();

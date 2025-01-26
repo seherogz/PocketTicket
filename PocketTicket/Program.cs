@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using PocketTicket.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer("Data Source=SEHEROUZFDCC\\SQLEXPRESS;Initial Catalog=PocketTicket;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=True "));
+
 
 var app = builder.Build();
 

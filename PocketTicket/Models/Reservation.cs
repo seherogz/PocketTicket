@@ -20,6 +20,7 @@ public class Reservation
     public Passenger Passenger { get; set; }
 
     public int FlightId { get; set; }
+    public Flight Flight { get; set; }
     public List<Ticket> Tickets { get; set; } = new List<Ticket>();
 
 }
