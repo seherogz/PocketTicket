@@ -6,7 +6,6 @@ namespace PocketTicket.Data;
 
 public class AppDbContext : IdentityDbContext<ApplicationUser> // ApplicationUser'ı kimlik doğrulama için kullanıyoruz.
 {
-    // DbSet tanımları (Tablolar)
     public DbSet<Airport> Airports { get; set; }
     public DbSet<Flight> Flights { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
