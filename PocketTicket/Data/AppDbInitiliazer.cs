@@ -11,7 +11,7 @@ public class AppDbInitializer
         using var serviceScope = applicationBuilder.ApplicationServices.CreateScope();
         var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-        context.Database.EnsureCreated(); // Database oluşturulmamışsa oluştur.
+        context.Database.EnsureCreated();
 
         if (!context.Airports.Any())
         {
@@ -21,20 +21,20 @@ public class AppDbInitializer
                     new Airport()
                     {
                         Name = "SkyLine Airways",
-                        desc = "Reliable international flights.",
-                        logo = "http://example.com/images/airlines/skyline.jpg"
+                        Desc = "Reliable international flights.",
+                        Logo = "http://example.com/images/airlines/skyline.jpg"
                     },
                     new Airport()
                     {
                         Name = "AirBlue",
-                        desc = "Affordable domestic flights.",
-                        logo = "http://example.com/images/airlines/airblue.jpg"
+                        Desc = "Affordable domestic flights.",
+                        Logo = "http://example.com/images/airlines/airblue.jpg"
                     },
                     new Airport()
                     {
                         Name = "Golden Wings",
-                        desc = "Luxury flying experience.",
-                        logo = "http://example.com/images/airlines/goldenwings.jpg"
+                        Desc = "Luxury flying experience.",
+                        Logo = "http://example.com/images/airlines/goldenwings.jpg"
                     }
                 });
             context.SaveChanges();
@@ -48,8 +48,8 @@ public class AppDbInitializer
                     new Flight()
                     {
                         FlightNumber = "SK123",
-                        DepartureAirportId = 3,
-                        ArrivalAirportId = 4,
+                        DepartureAirportId = 1,
+                        ArrivalAirportId = 2,
                         DepartureTime = DateTime.Now.AddHours(3),
                         ArrivalTime = DateTime.Now.AddHours(5),
                         Price = 150,
@@ -59,7 +59,7 @@ public class AppDbInitializer
                     {
                         FlightNumber = "AB456",
                         DepartureAirportId = 1,
-                        ArrivalAirportId = 2,
+                        ArrivalAirportId = 3,
                         DepartureTime = DateTime.Now.AddHours(2),
                         ArrivalTime = DateTime.Now.AddHours(4),
                         Price = 120,
@@ -68,8 +68,8 @@ public class AppDbInitializer
                     new Flight()
                     {
                         FlightNumber = "GW789",
-                        DepartureAirportId = 2,
-                        ArrivalAirportId = 5,
+                        DepartureAirportId = 3,
+                        ArrivalAirportId = 2,
                         DepartureTime = DateTime.Now.AddHours(10),
                         ArrivalTime = DateTime.Now.AddHours(14),
                         Price = 500,
@@ -132,6 +132,37 @@ public class AppDbInitializer
                 });
             context.SaveChanges();
         }
+
+        if (!context.flight_Passengers.Any()) // Eğer Flight_Passenger tablosunda veri yoksa
+        {
+            var passengers = new List<Flight_Passenger>
+            {
+                new Flight_Passenger
+                {
+                    FlightId = 1,
+                    PassengerId = 1,
+                    TicketClass = "Economy",
+                    SeatNumber = "12A"
+                },
+                new Flight_Passenger
+                {
+                    FlightId = 1,
+                    PassengerId = 2,
+                    TicketClass = "Business",
+                    SeatNumber = "5B"
+                },
+                new Flight_Passenger
+                {
+                    FlightId = 2,
+                    PassengerId = 3,
+                    TicketClass = "First Class",
+                    SeatNumber = "1A"
+                }
+            };
+
+            context.flight_Passengers.AddRange(passengers); // Verileri ekleyin
+            context.SaveChanges(); // Veritabanına kaydedin
+        }
     }
 
 
@@ -186,4 +217,3 @@ public class AppDbInitializer
         }
     }
 }
-

@@ -12,6 +12,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser> // ApplicationUse
     public DbSet<Reservation> Reservations { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<Passenger> Passengers { get; set; }
+    public DbSet<Flight_Passenger> flight_Passengers { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -20,10 +21,10 @@ public class AppDbContext : IdentityDbContext<ApplicationUser> // ApplicationUse
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Flight>()
-           .HasOne(f => f.DepartureAirport)
-           .WithMany(a => a.DepartureFlights)
-           .HasForeignKey(f => f.DepartureAirportId)
-           .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(f => f.DepartureAirport)
+            .WithMany(a => a.DepartureFlights)
+            .HasForeignKey(f => f.DepartureAirportId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Flight>()
             .HasOne(f => f.ArrivalAirport)
@@ -31,19 +32,17 @@ public class AppDbContext : IdentityDbContext<ApplicationUser> // ApplicationUse
             .HasForeignKey(f => f.ArrivalAirportId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Flight - Reservation İlişkileri
-        modelBuilder.Entity<Reservation>()
-            .HasOne(r => r.Flight)
-            .WithMany(f => f.Reservations)
-            .HasForeignKey(r => r.FlightId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        // Passenger - Reservation İlişkisi
         modelBuilder.Entity<Reservation>()
             .HasOne(r => r.Passenger)
             .WithMany(p => p.Reservations)
             .HasForeignKey(r => r.PassengerId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Reservation>()
+            .HasOne(r => r.Flight)
+            .WithMany(f => f.Reservations)
+            .HasForeignKey(r => r.FlightId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Ticket>()
             .HasOne(t => t.Flight)
@@ -56,6 +55,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser> // ApplicationUse
             .WithMany(r => r.Tickets)
             .HasForeignKey(t => t.ReservationId)
             .OnDelete(DeleteBehavior.Restrict);
+
+
 
         base.OnModelCreating(modelBuilder);
     }

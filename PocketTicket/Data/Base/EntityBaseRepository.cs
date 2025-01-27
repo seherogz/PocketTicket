@@ -10,8 +10,6 @@ namespace PocketTicket.Data.Base
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
-        //dead store: constructorda atadığım bir değişken en az bir classta kullanılmıyorsa
-        //Eğer constructor içinde bir değişkenin değeri atanır, ancak bu değer kullanılmadan tekrar başka bir değer atanırsa, dead store durumu ortaya çıkar.
 
         readonly AppDbContext _context;
         public EntityBaseRepository(AppDbContext context)

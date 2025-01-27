@@ -24,7 +24,7 @@ public class Passenger
 
     // RELATIONSHIP
     [ValidateNever]
-    public List<Flight_Passenger> Flights_Passengers { get; set; }
+    public List<Flight_Passenger> Flights_Passengers { get; set; } = new List<Flight_Passenger>();
     public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
 }

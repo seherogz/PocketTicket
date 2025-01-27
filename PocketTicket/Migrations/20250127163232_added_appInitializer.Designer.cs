@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PocketTicket.Data;
 
@@ -11,9 +12,11 @@ using PocketTicket.Data;
 namespace PocketTicket.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250127163232_added_appInitializer")]
+    partial class added_appInitializer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,7 +349,7 @@ namespace PocketTicket.Migrations
 
                     b.HasIndex("PassengerId");
 
-                    b.ToTable("flight_Passengers");
+                    b.ToTable("Flight_Passenger");
                 });
 
             modelBuilder.Entity("PocketTicket.Models.Reservation", b =>

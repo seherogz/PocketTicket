@@ -36,14 +36,11 @@ public class Flight
     public int DepartureAirportId { get; set; }
     public Airport DepartureAirport { get; set; }
 
-
     [Required]
     [Display(Name = "Arrival airport")]
     public int ArrivalAirportId { get; set; }
     public Airport ArrivalAirport { get; set; }
 
-
     public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     public List<Ticket> Tickets { get; set; } = new List<Ticket>();
-
 }

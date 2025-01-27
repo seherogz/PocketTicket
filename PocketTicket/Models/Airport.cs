@@ -12,12 +12,11 @@ public class Airport
 
     [Required]
     [Display(Name = "Description")]
-    public string desc { get; set; } = string.Empty;
-    public string logo { get; set; } = string.Empty;
+    public string Desc { get; set; } = string.Empty; 
+    public string Logo { get; set; } = string.Empty;
 
-    // RELATIONSHIP
+    // RELATIONSHIPS
     public List<Flight> DepartureFlights { get; set; } = new List<Flight>();
     public List<Flight> ArrivalFlights { get; set; } = new List<Flight>();
-
 }
 
