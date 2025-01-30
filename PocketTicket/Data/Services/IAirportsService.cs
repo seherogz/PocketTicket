@@ -6,34 +6,16 @@ namespace PocketTicket.Data.Services
 {
     public interface IAirportsService : IEntityBaseRepository<Airport>
     {
-        public Task AddAsync(Airport entity)
-        {
-            throw new NotImplementedException();
-        }
+        Task<IEnumerable<Airport>> GetAllAsync();
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        Task<Airport> GetByIdAsync(int id);
 
-        public Task<IEnumerable<Airport>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        Task AddAsync(Airport airport);
 
-        public Task<IEnumerable<Airport>> GetAllAsync(params Expression<Func<Airport, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
+        Task UpdateAsync(Airport airport);
 
-        public Task<Airport> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        Task DeleteAsync(int id);
 
-        public Task UpdateAsync(Airport entity)
-        {
-            throw new NotImplementedException();
-        }
+        Task<IEnumerable<Airport>> SearchByNameAsync(string name); //Arama yapılır
     }
 }
