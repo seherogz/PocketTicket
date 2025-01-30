@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PocketTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace PocketTicket.Models;
 
-public class Flight_Passenger
+public class Flight_Passenger : IEntityBase
 {
     [Key]
     public int Id { get; set; }

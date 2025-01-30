@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using PocketTicket.Data.Base;
 using PocketTicket.Models;
 
-public class Passenger
+public class Passenger : IEntityBase
 {
     [Key]
-    public int PassengerId { get; set; }
+    public int Id { get; set; }
 
     [Display(Name = "Name-Surname")]
     [Required(ErrorMessage = "Name and surname are required")]

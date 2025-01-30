@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PocketTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace PocketTicket.Models;
 
-public class Reservation
+public class Reservation : IEntityBase
 {
     [Key]
-    public int ReservationId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "Reservation date")]

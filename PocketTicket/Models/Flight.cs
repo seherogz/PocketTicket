@@ -1,11 +1,12 @@
 ﻿using PocketTicket.Data;
+using PocketTicket.Data.Base;
 using PocketTicket.Models;
 using System.ComponentModel.DataAnnotations;
 
-public class Flight
+public class Flight : IEntityBase
 {
     [Key]
-    public int FlightId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "Airline")]

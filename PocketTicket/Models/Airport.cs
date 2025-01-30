@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PocketTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace PocketTicket.Models;
-public class Airport
+public class Airport : IEntityBase
 {
     [Key]
-    public int AirportId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Display(Name = "Airport name")]

@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PocketTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PocketTicket.Models;
 
-public class Ticket
+public class Ticket : IEntityBase
 {
     [Key]
-    public int TicketId { get; set; }
+    public int Id { get; set; }
 
     [Required]
     [Column(TypeName = "nvarchar(10)")]
