@@ -7,9 +7,7 @@ namespace PocketTicket.Data.Services
     {
         readonly AppDbContext _context;
 
-        public TicketsService(AppDbContext context) : base(context)//dependency inversion
-                                                                   //burda kullandığım base miras aldığım class yani EntityBaseRepository.
-                                                                   //base class parant class ile iletişim için kullanıyoruz.
+        public TicketsService(AppDbContext context) : base(context)
         {
             _context = context;
         }
