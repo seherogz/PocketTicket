@@ -4,36 +4,13 @@ using System.Linq.Expressions;
 
 namespace PocketTicket.Data.Services
 {
-    public interface IPassengersService : IEntityBaseRepository<Reservation>
+    public interface IPassengersService : IEntityBaseRepository<Passenger>
     {
-        Task IEntityBaseRepository<Reservation>.AddAsync(Reservation entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IEntityBaseRepository<Reservation>.DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Reservation>> IEntityBaseRepository<Reservation>.GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Reservation>> IEntityBaseRepository<Reservation>.GetAllAsync(params Expression<Func<Reservation, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Reservation> IEntityBaseRepository<Reservation>.GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IEntityBaseRepository<Reservation>.UpdateAsync(Reservation entity)
-        {
-            throw new NotImplementedException();
-        }
+        Task<IEnumerable<Passenger>> GetAllAsync();
+        Task<Passenger> GetByIdAsync(int id);
+        Task AddAsync(Passenger passenger);
+        Task UpdateAsync(Passenger passenger);
+        Task DeleteAsync(int id);
+        Task DeleteAsync(Passenger passenger);
     }
 }

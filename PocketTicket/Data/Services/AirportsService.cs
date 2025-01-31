@@ -53,4 +53,3 @@ public class AirportsService : EntityBaseRepository<Airport>, IAirportsService//
             .ToListAsync();
     }
 }
-}
