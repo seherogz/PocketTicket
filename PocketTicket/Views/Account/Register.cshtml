@@ -1,0 +1,64 @@
+﻿@using PocketTicket.ViewModels;
+@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row justify-content-center" style="margin-top: 50px;">
+    <div class="col-md-6 text-center">
+        <img src="/images/logo.png" alt="PocketTicket Logo" style="width: 150px; margin-bottom: 20px;">
+        <h2>PocketTicket</h2>
+        <p style="font-size: 1.2rem; color: #555;">Airline Service</p>
+    </div>
+</div>
+
+
+<div class="row justify-content-center mt-4">
+    @if (TempData["Error"] != null)
+    {
+        <div class="col-md-6 alert alert-danger text-center">
+            <span><b>Üzgünüz.</b> - @TempData["Error"]</span>
+        </div>
+    }
+
+    <div class="col-md-6">
+        <div class="card shadow-sm" style="border-radius: 10px; padding: 20px;">
+            <div class="card-body">
+                <h4 class="text-center mb-4">Lütfen kayıt bilgilerinizi doldurun</h4>
+                <form asp-action="Register">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="FullName" class="form-label">Ad Soyad</label>
+                        <input asp-for="FullName" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="EmailAddress" class="form-label">E-mail</label>
+                        <input asp-for="EmailAddress" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="form-label">Şifre</label>
+                        <input asp-for="Password" type="password" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="ConfirmePassword" class="form-label">Şifreyi Onayla</label>
+                        <input asp-for="ConfirmePassword" type="password" class="form-control" style="border-radius: 5px;" />
+                        <span asp-validation-for="ConfirmePassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between mt-3">
+                        <input type="submit" class="btn btn-outline-success px-4" value="Kayıt Ol" />
+                        <a href="/Login" class="btn btn-outline-secondary px-4">Vazgeç</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
