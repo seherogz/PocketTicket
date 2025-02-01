@@ -15,7 +15,7 @@ namespace PocketTicket.Migrations
                 name: "Airports",
                 columns: table => new
                 {
-                    AirportId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     desc = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -23,7 +23,7 @@ namespace PocketTicket.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Airports", x => x.AirportId);
+                    table.PrimaryKey("PK_Airports", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,7 +85,7 @@ namespace PocketTicket.Migrations
                 name: "Flights",
                 columns: table => new
                 {
-                    FlightId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Airline = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FlightNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -98,18 +98,18 @@ namespace PocketTicket.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Flights", x => x.FlightId);
+                    table.PrimaryKey("PK_Flights", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Flights_Airports_ArrivalAirportId",
                         column: x => x.ArrivalAirportId,
                         principalTable: "Airports",
-                        principalColumn: "AirportId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Flights_Airports_DepartureAirportId",
                         column: x => x.DepartureAirportId,
                         principalTable: "Airports",
-                        principalColumn: "AirportId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -237,13 +237,13 @@ namespace PocketTicket.Migrations
                         name: "FK_Flight_Passenger_Flights_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flights",
-                        principalColumn: "FlightId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Flight_Passenger_Passengers_PassengerId",
                         column: x => x.PassengerId,
                         principalTable: "Passengers",
-                        principalColumn: "PassengerId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -251,7 +251,7 @@ namespace PocketTicket.Migrations
                 name: "Reservations",
                 columns: table => new
                 {
-                    ReservationId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -260,18 +260,18 @@ namespace PocketTicket.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reservations", x => x.ReservationId);
+                    table.PrimaryKey("PK_Reservations", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Reservations_Flights_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flights",
-                        principalColumn: "FlightId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservations_Passengers_PassengerId",
                         column: x => x.PassengerId,
                         principalTable: "Passengers",
-                        principalColumn: "PassengerId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -279,7 +279,7 @@ namespace PocketTicket.Migrations
                 name: "Tickets",
                 columns: table => new
                 {
-                    TicketId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SeatNumber = table.Column<string>(type: "nvarchar(10)", nullable: false),
                     TicketClass = table.Column<string>(type: "nvarchar(10)", nullable: false),
@@ -288,18 +288,18 @@ namespace PocketTicket.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tickets", x => x.TicketId);
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Tickets_Flights_FlightId",
                         column: x => x.FlightId,
                         principalTable: "Flights",
-                        principalColumn: "FlightId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tickets_Reservations_ReservationId",
                         column: x => x.ReservationId,
                         principalTable: "Reservations",
-                        principalColumn: "ReservationId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 

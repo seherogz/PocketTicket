@@ -91,17 +91,6 @@ public class AppDbInitializer
             context.SaveChanges();
         }
 
-        if (!context.Tickets.Any())
-        {
-            context.Tickets.AddRange(
-                new List<Ticket>()
-                {
-            new Ticket() { SeatNumber = "12A", TicketClass = "Economy", ReservationId = 1 },  // ReservationId burada belirlenmeli
-            new Ticket() { SeatNumber = "15B", TicketClass = "Business", ReservationId = 2 },
-            new Ticket() { SeatNumber = "18C", TicketClass = "Economy", ReservationId = 3 }
-                });
-            context.SaveChanges();
-        }
 
         if (!context.Reservations.Any())
         {
@@ -113,7 +102,7 @@ public class AppDbInitializer
                 ReservationDate = DateTime.Now,
                 TotalPrice = 500.00m,
                 PassengerId = 1,  // Daha önce eklediğiniz yolcunun id'si
-                FlightId = 1      // Daha önce eklediğiniz uçuşun id'si
+                FlightId = 1      
             },
             new Reservation()
             {
@@ -129,6 +118,18 @@ public class AppDbInitializer
                 PassengerId = 3,  // 3. yolcu
                 FlightId = 3      // 3. uçuş
             }
+                });
+            context.SaveChanges();
+        }
+
+        if (!context.Tickets.Any())
+        {
+            context.Tickets.AddRange(
+                new List<Ticket>()
+                {
+            new Ticket() { SeatNumber = "12A", TicketClass = "Economy", FlightId = 1,ReservationId = 1 },  // ReservationId burada belirlenmeli
+            new Ticket() { SeatNumber = "15B", TicketClass = "Business", FlightId = 2, ReservationId = 2 },
+            new Ticket() { SeatNumber = "18C", TicketClass = "Economy", FlightId = 3, ReservationId = 3 }
                 });
             context.SaveChanges();
         }
