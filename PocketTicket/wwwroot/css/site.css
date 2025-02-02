@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Logo yuvarlak ve boyutlandırma */
+.navbar-brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%; /* Yuvarlak görünüm için */
+    margin-right: 10px; /* Yazıyla arasındaki boşluk */
+}
+
+

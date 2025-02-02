@@ -6,41 +6,75 @@
     <title>@ViewData["Title"] - PocketTicket</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PocketTicket.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PocketTicket</a>
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="/images/PocketTicket.webp" alt="PocketTicket Logo" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
+                    <h2 class="mb-0">PocketTicket</h2>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="navbar-nav flex-grow-1">
+                            <a class="nav-link" href="/">
+                                <i class="bi bi-house-door-fill"></i> Anasayfa
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Yönetim
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/Airports/Index"><i class="bi bi-airport"></i> Havalimanları</a></li>
+                                    <li><a class="dropdown-item" href="/Users/Index"><i class="bi bi-person-fill"></i> Kullanıcılar</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
+
+                    <form class="form-inline" style="display: flex; align-items: center; padding-right:15px;" asp-controller="Flights" asp-action="Search">
+                        <div class="input-group">
+                            <input name="searchString" type="text" class="form-control" placeholder="Uçuş ara..." />
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Login Button (Giriş Yap) -->
+                    <div class="d-flex align-items-center ms-3">
+                        <a href="/Account/Login" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-person-fill"></i> Giriş Yap
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="border-top footer text-muted" style="padding: 2px ; font-size: 12px; margin-top: 80px">
         <div class="container">
-            &copy; 2025 - PocketTicket - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - PocketTicket
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
