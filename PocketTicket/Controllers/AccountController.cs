@@ -43,7 +43,7 @@ public class AccountController : Controller
                 var result = await _signInManager.PasswordSignInAsync(user, login.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "HomePage"); //login olursa başarılı şekilde bu sayfaya gönderir.
+                    return RedirectToAction("Index", "Home"); //login olursa başarılı şekilde bu sayfaya gönderir.
                 }
 
             }
@@ -95,7 +95,7 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "HomePage");
+        return RedirectToAction("Index", "Home");
     }
 }
 

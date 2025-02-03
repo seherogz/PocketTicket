@@ -2,9 +2,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PocketTicket.Data;
+using PocketTicket.Data.Services;
 using PocketTicket.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IAirportsService, AirportsService>(); // IAirportsService'? DI konteynerine ekliyoruz
+
 
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -18,6 +22,8 @@ builder.Services.AddAuthentication(option =>
     option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
 });
+
+
 
 
 // Add services to the container.

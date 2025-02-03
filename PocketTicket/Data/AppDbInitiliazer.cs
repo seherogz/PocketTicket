@@ -18,33 +18,56 @@ public class AppDbInitializer
             context.Airports.AddRange(
                 new List<Airport>()
                 {
-                    new Airport()
-                    {
-                        Name = "SkyLine Airways",
-                        Desc = "Reliable international flights.",
-                        Logo = "http://example.com/images/airlines/skyline.jpg"
-                    },
-                    new Airport()
-                    {
-                        Name = "AirBlue",
-                        Desc = "Affordable domestic flights.",
-                        Logo = "http://example.com/images/airlines/airblue.jpg"
-                    },
-                    new Airport()
-                    {
-                        Name = "Golden Wings",
-                        Desc = "Luxury flying experience.",
-                        Logo = "http://example.com/images/airlines/goldenwings.jpg"
-                    }
+            new Airport()
+            {
+                Name = "SkyLine Airways",
+                Desc = "Reliable international flights.",
+                Logo = "http://example.com/images/airlines/skyline.jpg"
+            },
+            new Airport()
+            {
+                Name = "AirBlue",
+                Desc = "Affordable domestic flights.",
+                Logo = "http://example.com/images/airlines/airblue.jpg"
+            },
+            new Airport()
+            {
+                Name = "Golden Wings",
+                Desc = "Luxury flying experience.",
+                Logo = "http://example.com/images/airlines/goldenwings.jpg"
+            },
+            new Airport()
+            {
+                Name = "Air Express",
+                Desc = "Fast and convenient air travel.",
+                Logo = "http://example.com/images/airlines/airexpress.jpg"
+            },
+            new Airport()
+            {
+                Name = "Oceanic Airways",
+                Desc = "Global connections with excellent service.",
+                Logo = "http://example.com/images/airlines/oceanic.jpg"
+            },
+            new Airport()
+            {
+                Name = "SkyHigh Airlines",
+                Desc = "Premium service for elite travelers.",
+                Logo = "http://example.com/images/airlines/skyhigh.jpg"
+            }
                 });
             context.SaveChanges();
+
         }
 
+
+
+
+
         if (!context.Flights.Any())
-        {
-            context.Flights.AddRange(
-                new List<Flight>()
-                {
+            {
+                context.Flights.AddRange(
+                    new List<Flight>()
+                    {
                     new Flight()
                     {
                         FlightNumber = "SK123",
@@ -75,34 +98,34 @@ public class AppDbInitializer
                         Price = 500,
                         Status = FlightStatus.OnTime,
                     }
-                });
-            context.SaveChanges();
-        }
+                    });
+                context.SaveChanges();
+            }
 
-        if (!context.Passengers.Any())
-        {
-            context.Passengers.AddRange(
-                new List<Passenger>()
-                {
+            if (!context.Passengers.Any())
+            {
+                context.Passengers.AddRange(
+                    new List<Passenger>()
+                    {
                     new Passenger() { FullName = "John Doe", Email = "john.doe@example.com", PhoneNumber="05467890345" },
                     new Passenger() { FullName = "Jane Smith", Email = "jane.smith@example.com", PhoneNumber="05497820125" },
                     new Passenger() { FullName = "Ali Veli", Email = "ali.veli@example.com", PhoneNumber="05360850315" }
-                });
-            context.SaveChanges();
-        }
+                    });
+                context.SaveChanges();
+            }
 
 
-        if (!context.Reservations.Any())
-        {
-            context.Reservations.AddRange(
-                new List<Reservation>()
-                {
+            if (!context.Reservations.Any())
+            {
+                context.Reservations.AddRange(
+                    new List<Reservation>()
+                    {
             new Reservation()
             {
                 ReservationDate = DateTime.Now,
                 TotalPrice = 500.00m,
                 PassengerId = 1,  // Daha önce eklediğiniz yolcunun id'si
-                FlightId = 1      
+                FlightId = 1
             },
             new Reservation()
             {
@@ -118,25 +141,25 @@ public class AppDbInitializer
                 PassengerId = 3,  // 3. yolcu
                 FlightId = 3      // 3. uçuş
             }
-                });
-            context.SaveChanges();
-        }
+                    });
+                context.SaveChanges();
+            }
 
-        if (!context.Tickets.Any())
-        {
-            context.Tickets.AddRange(
-                new List<Ticket>()
-                {
+            if (!context.Tickets.Any())
+            {
+                context.Tickets.AddRange(
+                    new List<Ticket>()
+                    {
             new Ticket() { SeatNumber = "12A", TicketClass = "Economy", FlightId = 1,ReservationId = 1 },  // ReservationId burada belirlenmeli
             new Ticket() { SeatNumber = "15B", TicketClass = "Business", FlightId = 2, ReservationId = 2 },
             new Ticket() { SeatNumber = "18C", TicketClass = "Economy", FlightId = 3, ReservationId = 3 }
-                });
-            context.SaveChanges();
-        }
+                    });
+                context.SaveChanges();
+            }
 
-        if (!context.flight_Passengers.Any()) // Eğer Flight_Passenger tablosunda veri yoksa
-        {
-            var passengers = new List<Flight_Passenger>
+            if (!context.flight_Passengers.Any()) // Eğer Flight_Passenger tablosunda veri yoksa
+            {
+                var passengers = new List<Flight_Passenger>
             {
                 new Flight_Passenger
                 {
@@ -161,10 +184,11 @@ public class AppDbInitializer
                 }
             };
 
-            context.flight_Passengers.AddRange(passengers); // Verileri ekleyin
-            context.SaveChanges(); // Veritabanına kaydedin
+                context.flight_Passengers.AddRange(passengers); // Verileri ekleyin
+                context.SaveChanges(); // Veritabanına kaydedin
+            }
         }
-    }
+    
 
 
     public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)

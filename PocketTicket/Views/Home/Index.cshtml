@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Airport>
+
+@{
     ViewData["Title"] = "PocketTicket - Home";
 }
 
@@ -28,11 +30,23 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="nereden" class="form-label">Nereden</label>
-                                <input type="text" id="nereden" class="form-control" placeholder="Nereden" required>
+                                <select id="nereden" class="form-select" required>
+                                    <option value=""></option>
+                                    @foreach (var airport in Model) 
+                                    {
+                                        <option value="@airport.Id">@airport.Name</option>
+                                    }
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="nereye" class="form-label">Nereye</label>
-                                <input type="text" id="nereye" class="form-control" placeholder="Nereye" required>
+                                <select id="nereye" class="form-select" required>
+                                    <option value=""></option>
+                                    @foreach (var airport in Model) 
+                                    {
+                                        <option value="@airport.Id">@airport.Name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 

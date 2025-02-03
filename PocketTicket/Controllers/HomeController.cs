@@ -1,21 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using PocketTicket.Models;
+using PocketTicket.Data.Services;
 
-namespace PocketTicket.Controllers
+namespace PocketTicket.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly IAirportsService _airportsService;
+
+    public HomeController(IAirportsService airportsService)
     {
-        private readonly ILogger<HomeController> _logger;
+        _airportsService = airportsService;
+    }
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
+    public async Task<IActionResult> Index()
+    {
+        var airports = await _airportsService.GetAllAsync(); // Havalimanlar?n? al?yoruz
+        return View(airports); // Havalimanlar? model olarak view'e gönderiliyor
     }
 }
