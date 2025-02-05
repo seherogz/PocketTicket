@@ -19,8 +19,8 @@ public class FlightController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var allFlights = await _service.GetAllAsync(f => f.DepartureAirport);  // DepartureAirport ile ilişkili uçuşlar
-        return View(allFlights);
+        var flights = await _service.GetAllAsync();
+        return View(flights); // List of airports view
     }
 
     public async Task<IActionResult> Details(int id)
@@ -135,6 +135,7 @@ public class FlightController : Controller
 
         return View("_NotFound");
     }
+
 
 
 

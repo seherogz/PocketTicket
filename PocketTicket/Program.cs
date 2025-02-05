@@ -8,6 +8,8 @@ using PocketTicket.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAirportsService, AirportsService>(); // IAirportsService'? DI konteynerine ekliyoruz
+builder.Services.AddScoped<IFlightsService, FlightService>();
+
 
 
 

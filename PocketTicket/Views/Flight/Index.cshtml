@@ -1,0 +1,48 @@
+﻿@using PocketTicket.Data
+@model List<Flight>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Uçuş Sonuçları</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning text-center">@ViewBag.Message</div>
+    }
+    else
+    {
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Uçuş Numarası</th>
+                    <th scope="col">Kalkış Saati</th>
+                    <th scope="col">Varış Saati</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Durum</th>
+                    <th scope="col">Rezervasyon</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var flight in Model)
+                {
+                    <tr>
+                        <td>@flight.FlightNumber</td>
+                        <td>@flight.DepartureTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@flight.ArrivalTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@flight.Price.ToString("C")</td>
+                        <td>
+                            <span class="badge @(flight.Status == FlightStatus.OnTime ? "badge-success" : "badge-danger")">
+                                @flight.Status
+                            </span>
+                        </td>
+                        <td>
+                            <form asp-action="BookFlight" method="post">
+                                <input type="hidden" name="flightId" value="@flight.Id" />
+                                <button type="submit" class="btn btn-primary btn-sm">Rezervasyon Yap</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

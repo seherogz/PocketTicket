@@ -5,7 +5,7 @@
 }
 
 <div class="container mt-5">
-  
+
     <!-- Search Section -->
     <div class="row justify-content-center mt-2">
         <div class="col-md-10">
@@ -15,10 +15,11 @@
                         <h3 style="color: #555;">Bilet Ara</h3>
                     </div>
 
-                    <form>
+                    <!-- Form -->
+                    <form asp-controller="Flight" asp-action="Index" method="get">
                         <div class="mb-3 d-flex justify-content-center gap-3">
                             <div>
-                                <input type="radio" id="tekYon" name="tripType" value="one-way">
+                                <input type="radio" id="tekYon" name="tripType" value="one-way" checked>
                                 <label for="tekYon">Tek Yön</label>
                             </div>
                             <div>
@@ -30,9 +31,9 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="nereden" class="form-label">Nereden</label>
-                                <select id="nereden" class="form-select" required>
-                                    <option value=""></option>
-                                    @foreach (var airport in Model) 
+                                <select id="nereden" name="departureAirportId" class="form-select" required>
+                                    <option value="">Seçiniz</option>
+                                    @foreach (var airport in Model)
                                     {
                                         <option value="@airport.Id">@airport.Name</option>
                                     }
@@ -40,9 +41,9 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="nereye" class="form-label">Nereye</label>
-                                <select id="nereye" class="form-select" required>
-                                    <option value=""></option>
-                                    @foreach (var airport in Model) 
+                                <select id="nereye" name="arrivalAirportId" class="form-select" required>
+                                    <option value="">Seçiniz</option>
+                                    @foreach (var airport in Model)
                                     {
                                         <option value="@airport.Id">@airport.Name</option>
                                     }
@@ -53,17 +54,17 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="takvim" class="form-label">Gidiş Tarihi</label>
-                                <input type="date" id="takvim" class="form-control" required>
+                                <input type="date" id="takvim" name="departureDate" class="form-control" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="donusTarihi" class="form-label">Dönüş Tarihi</label>
-                                <input type="date" id="donusTarihi" class="form-control" disabled>
+                                <input type="date" id="donusTarihi" name="returnDate" class="form-control" disabled>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="yolcuSayisi" class="form-label">Yolcu Sayısı</label>
-                            <select id="yolcuSayisi" class="form-select">
+                            <select id="yolcuSayisi" name="passengerCount" class="form-select">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -82,7 +83,6 @@
 </div>
 
 <script>
-    // Enable/Disable Dönüş Tarihi input based on trip type
     document.querySelectorAll('input[name="tripType"]').forEach((radio) => {
         radio.addEventListener('change', function () {
             const donusTarihi = document.getElementById('donusTarihi');

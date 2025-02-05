@@ -97,7 +97,39 @@ public class AppDbInitializer
                         ArrivalTime = DateTime.Now.AddHours(14),
                         Price = 500,
                         Status = FlightStatus.OnTime,
+                    },
+                    new Flight()
+                    {
+                        FlightNumber = "LH234",
+                        DepartureAirportId = 2,
+                        ArrivalAirportId = 4,
+                        DepartureTime = DateTime.Now.AddHours(6),
+                        ArrivalTime = DateTime.Now.AddHours(9),
+                        Price = 200,
+                        Status = FlightStatus.OnTime,
+                    },
+                    new Flight()
+                    {
+                        FlightNumber = "KL567",
+                        DepartureAirportId = 3,
+                        ArrivalAirportId = 1,
+                        DepartureTime = DateTime.Now.AddHours(8),
+                        ArrivalTime = DateTime.Now.AddHours(12),
+                        Price = 300,
+                        Status = FlightStatus.Cancelled,
+                    },
+                    new Flight()
+                    {
+                        FlightNumber = "QR890",
+                        DepartureAirportId = 4,
+                        ArrivalAirportId = 2,
+                        DepartureTime = DateTime.Now.AddHours(12),
+                        ArrivalTime = DateTime.Now.AddHours(15),
+                        Price = 400,
+                        Status = FlightStatus.OnTime,
                     }
+
+
                     });
                 context.SaveChanges();
             }
