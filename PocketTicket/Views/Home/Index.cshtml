@@ -5,14 +5,12 @@
 }
 
 <div class="container mt-5">
-
-    <!-- Search Section -->
     <div class="row justify-content-center mt-2">
         <div class="col-md-10">
-            <div class="card shadow" style="background-color: #f4f4f4; border-radius: 15px; padding: 20px;">
+            <div class="card shadow" style="background-color: #F9F6F1; border-radius: 15px; padding: 20px; border: 1px solid #A29D97;">
                 <div class="card-body">
                     <div class="text-center mb-4">
-                        <h3 style="color: #555;">Bilet Ara</h3>
+                        <h3 style="color: #79717A;">Bilet Ara</h3>
                     </div>
 
                     <!-- Form -->
@@ -20,18 +18,18 @@
                         <div class="mb-3 d-flex justify-content-center gap-3">
                             <div>
                                 <input type="radio" id="tekYon" name="tripType" value="one-way" checked>
-                                <label for="tekYon">Tek Yön</label>
+                                <label for="tekYon" style="color: #79717A;">Tek Yön</label>
                             </div>
                             <div>
                                 <input type="radio" id="gidisDonus" name="tripType" value="round-trip">
-                                <label for="gidisDonus">Gidiş-Dönüş</label>
+                                <label for="gidisDonus" style="color: #79717A;">Gidiş-Dönüş</label>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="nereden" class="form-label">Nereden</label>
-                                <select id="nereden" name="departureAirportId" class="form-select" required>
+                                <label for="nereden" class="form-label" style="color: #79717A;">Nereden</label>
+                                <select id="nereden" name="departureAirportId" class="form-select" required style="background-color: #F9F6F1; border: 1px solid #A29D97;">
                                     <option value="">Seçiniz</option>
                                     @foreach (var airport in Model)
                                     {
@@ -40,8 +38,8 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="nereye" class="form-label">Nereye</label>
-                                <select id="nereye" name="arrivalAirportId" class="form-select" required>
+                                <label for="nereye" class="form-label" style="color: #79717A;">Nereye</label>
+                                <select id="nereye" name="arrivalAirportId" class="form-select" required style="background-color: #F9F6F1; border: 1px solid #A29D97;">
                                     <option value="">Seçiniz</option>
                                     @foreach (var airport in Model)
                                     {
@@ -53,18 +51,18 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="takvim" class="form-label">Gidiş Tarihi</label>
-                                <input type="date" id="takvim" name="departureDate" class="form-control" required>
+                                <label for="takvim" class="form-label" style="color: #79717A;">Gidiş Tarihi</label>
+                                <input type="date" id="takvim" name="departureDate" class="form-control" required style="background-color: #F9F6F1; border: 1px solid #A29D97;">
                             </div>
                             <div class="col-md-6">
-                                <label for="donusTarihi" class="form-label">Dönüş Tarihi</label>
-                                <input type="date" id="donusTarihi" name="returnDate" class="form-control" disabled>
+                                <label for="donusTarihi" class="form-label" style="color: #79717A;">Dönüş Tarihi</label>
+                                <input type="date" id="donusTarihi" name="returnDate" class="form-control" disabled style="background-color: #F9F6F1; border: 1px solid #A29D97;">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="yolcuSayisi" class="form-label">Yolcu Sayısı</label>
-                            <select id="yolcuSayisi" name="passengerCount" class="form-select">
+                            <label for="yolcuSayisi" class="form-label" style="color: #79717A;">Yolcu Sayısı</label>
+                            <select id="yolcuSayisi" name="passengerCount" class="form-select" style="background-color: #F9F6F1; border: 1px solid #A29D97;">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -73,7 +71,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary px-5 py-2" style="border-radius: 10px;">Bilet Bul</button>
+                            <button type="submit" class="btn btn-outline-primary px-5 py-2" style="border-radius: 25px; border: 2px solid #79717A; color: #79717A;">Bilet Bul</button>
                         </div>
                     </form>
                 </div>
