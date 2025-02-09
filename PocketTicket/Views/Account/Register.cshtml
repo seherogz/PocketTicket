@@ -1,4 +1,4 @@
-﻿@using PocketTicket.ViewModels;
+﻿@using PocketTicket.ViewModels
 @model RegisterVM
 @{
     ViewData["Title"] = "Register";
@@ -12,7 +12,6 @@
     </div>
 </div>
 
-
 <div class="row justify-content-center mt-4">
     @if (TempData["Error"] != null)
     {
@@ -25,8 +24,8 @@
         <div class="card shadow-sm" style="border-radius: 10px; padding: 20px;">
             <div class="card-body">
                 <h4 class="text-center mb-4">Lütfen kayıt bilgilerinizi doldurun</h4>
-                <form asp-action="Register"> 
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
                     <div class="form-group mb-3">
                         <label asp-for="FullName" class="form-label">Ad Soyad</label>
@@ -62,3 +61,6 @@
     </div>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
