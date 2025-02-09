@@ -7,10 +7,140 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .navbar {
+            background-color: #79717A;
+            border-radius: 5px;
+        }
+
+        .navbar-brand h2 {
+            font-size: 1.6rem;
+            color: #D9C6B7;
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link {
+            color: #D9C6B7;
+            font-size: 1.1rem;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #B6A899;
+            }
+
+        .navbar-toggler-icon {
+            background-color: #D9C6B7;
+        }
+
+        .form-control, .form-select {
+            border-radius: 25px;
+            border: 1px solid #A29D97;
+            padding: 12px 20px;
+            background-color: #F9F6F1;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border-color: #B6A899;
+                box-shadow: 0 0 5px rgba(182, 168, 153, 0.5);
+            }
+
+        .btn-outline-primary {
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: #79717A;
+            border: 2px solid #79717A;
+        }
+
+            .btn-outline-primary:hover {
+                background-color: #B6A899;
+                color: #F9F6F1;
+            }
+
+        .btn-login {
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            color: #79717A;
+            border: 2px solid #79717A;
+            background-color: #F9F6F1;
+        }
+
+            .btn-login:hover {
+                background-color: #B6A899;
+                color: #fff;
+            }
+
+        footer {
+            background-color: #79717A;
+            color: #D9C6B7;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+            footer .container {
+                text-align: center;
+            }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #F9F6F1;
+            border: 1px solid #A29D97;
+        }
+
+        .card-header {
+            background-color: #B6A899;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .container-fluid {
+            padding: 0 20px;
+        }
+
+        .navbar-collapse {
+            justify-content: space-between;
+        }
+
+        .input-group .form-control {
+            border-radius: 20px;
+            background-color: #F9F6F1;
+        }
+
+        .navbar-collapse .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Arama butonunu belirgin hale getirme */
+        .form-inline .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+            .form-inline .input-group .form-control {
+                border-radius: 25px;
+                background-color: #F9F6F1;
+            }
+
+            .form-inline .input-group .btn {
+                border-radius: 25px;
+                background-color: #79717A;
+                color: #fff;
+                font-weight: 600;
+                border: 2px solid #79717A;
+            }
+
+                .form-inline .input-group .btn:hover {
+                    background-color: #B6A899;
+                    color: #fff;
+                }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="/">
                     <img src="/images/PocketTicket.webp" alt="PocketTicket Logo" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;">
@@ -20,14 +150,13 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="navbar-nav flex-grow-1">
                             <a class="nav-link" href="/">
                                 <i class="bi bi-house-door-fill"></i> Anasayfa
                             </a>
                         </li>
-                
                         @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                         {
                             <li class="nav-item dropdown">
@@ -45,14 +174,14 @@
                     <form class="form-inline" style="display: flex; align-items: center; padding-right:15px;" asp-controller="Flights" asp-action="Search">
                         <div class="input-group">
                             <input name="searchString" type="text" class="form-control" placeholder="Uçuş ara..." />
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
                                 <i class="bi bi-search"></i>
                             </button>
                         </div>
                     </form>
 
                     <div class="d-flex align-items-center ms-3">
-                        <a href="/Account/Login" class="btn btn-outline-primary btn-sm">
+                        <a href="/Account/Login" class="btn-login">
                             <i class="bi bi-person-fill"></i> Giriş Yap
                         </a>
                     </div>
@@ -67,8 +196,7 @@
         </main>
     </div>
 
-
-    <footer class="border-top footer text-muted" style="padding: 2px ; font-size: 12px; margin-top: 80px">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - PocketTicket
         </div>
