@@ -20,7 +20,10 @@ public class FlightController : Controller
     public async Task<IActionResult> Index()
     {
         var flights = await _service.GetAllAsync();
-        return View(flights); // List of airports view
+        var dropdowns = await _service.GetFlightDropdownsValuesAsync();
+        ViewBag.Airports = dropdowns.Airports;
+
+        return View(flights);
     }
 
     public async Task<IActionResult> Details(int id)
@@ -114,27 +117,30 @@ public class FlightController : Controller
     }
 
 
-    public async Task<IActionResult> Filter(string searchString)
+    public async Task<IActionResult> Filter(int? departureAirportId, int? arrivalAirportId)
     {
-        var allFlights = await _service.GetAllAsync(f => f.DepartureAirport); // Tüm uçuşları alıyoruz
-        if (!string.IsNullOrEmpty(searchString))
+        var allFlights = await _service.GetAllAsync();
+
+        if (departureAirportId.HasValue && arrivalAirportId.HasValue)
         {
-            var filteredFlights = allFlights.Where(f => f.FlightNumber.ToLower().Contains(searchString.ToLower()) ||
-                                                        f.Airline.ToLower().Contains(searchString.ToLower()))
-                                           .ToList();
+            var filteredFlights = allFlights.Where(f => f.DepartureAirportId == departureAirportId.Value &&
+                                                        f.ArrivalAirportId == arrivalAirportId.Value)
+                                            .ToList();
 
             if (filteredFlights.Any())
             {
-                return View("Index", filteredFlights); // Arama sonucu varsa Index view'ına filtrelenmiş uçuşları göndeririz
+                return View("Index", filteredFlights);
             }
             else
             {
-                return View("Index", allFlights); // Eğer sonuç yoksa tüm uçuşları göster
+                ViewBag.Message = "Seçtiğiniz kalkış ve varış noktaları için uçuş bulunamadı.";
+                return View("Index", new List<Flight>()); 
             }
         }
 
-        return View("_NotFound");
+        return RedirectToAction(nameof(Index)); // Eğer giriş yoksa tüm uçuşları göster
     }
+
 
 
 

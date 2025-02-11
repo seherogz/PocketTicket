@@ -1,8 +1,15 @@
 ﻿@using PocketTicket.Data
-@model List<Flight>
-
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Uçuş Sonuçları</h2>
+    <h2 class="text-center mb-4">
+        @if (ViewBag.SelectedDepartureAirport != null && ViewBag.SelectedArrivalAirport != null)
+        {
+            <span>@ViewBag.SelectedDepartureAirport → @ViewBag.SelectedArrivalAirport</span>
+        }
+        else
+        {
+            <span>Uçuş Sonuçları</span>
+        }
+    </h2>
 
     @if (ViewBag.Message != null)
     {
@@ -11,14 +18,14 @@
     else
     {
         <table class="table table-hover">
-            <thead class="thead-light">
+            <thead>
                 <tr>
-                    <th scope="col">Uçuş Numarası</th>
-                    <th scope="col">Kalkış Saati</th>
-                    <th scope="col">Varış Saati</th>
-                    <th scope="col">Fiyat</th>
-                    <th scope="col">Durum</th>
-                    <th scope="col">Rezervasyon</th>
+                    <th>Uçuş Numarası</th>
+                    <th>Kalkış Saati</th>
+                    <th>Varış Saati</th>
+                    <th>Fiyat</th>
+                    <th>Durum</th>
+                    <th>Rezervasyon</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +44,7 @@
                         <td>
                             <form asp-action="BookFlight" method="post">
                                 <input type="hidden" name="flightId" value="@flight.Id" />
-                                <button type="submit" class="btn btn-primary btn-sm">Rezervasyon Yap</button>
+                                <button type="submit" class="btn btn-outline-primary px-5 py-2" style="border-radius: 25px; border: 2px solid #79717A; color: #79717A;">Rezervasyon yap</button>
                             </form>
                         </td>
                     </tr>
