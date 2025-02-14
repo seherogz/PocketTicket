@@ -17,7 +17,6 @@ namespace PocketTicket.Controllers
         [HttpPost]
         public IActionResult Index(int flightId)
         {
-            // flightId'yi kullanarak gerekli işlemi yapabiliriz.
             var flight = _reservationsService.GetByIdAsync(flightId); // Uçuşu alıyoruz.
 
             if (flight == null)
@@ -26,18 +25,15 @@ namespace PocketTicket.Controllers
                 return RedirectToAction("Index", "Flights");
             }
 
-            // Rezervasyon işlemi yapabiliriz veya kullanıcıyı başka bir sayfaya yönlendirebiliriz.
-            // Örneğin, yeni bir rezervasyon oluşturabiliriz:
+          
             var reservation = new Reservation
             {
                 FlightId = flightId,
                 ReservationDate = DateTime.Now,
             };
 
-            // Rezervasyonu veritabanına kaydedelim
             _reservationsService.AddAsync(reservation).Wait(); // Asenkron işlemi bekletiyoruz
 
-            // Yönlendirme
             return RedirectToAction(nameof(Index)); // Rezervasyon işlemi tamamlandığında Index sayfasına dönüyoruz.
         }
 
