@@ -1,0 +1,87 @@
+﻿@model List<PocketTicket.Models.Reservation>
+@using PocketTicket.Data
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Rezervasyonlarım</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">Henüz bir rezervasyonunuz bulunmamaktadır.</div>
+    }
+    else
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Rezervasyon No</th>
+                    <th>Uçuş Numarası</th>
+                    <th>Kalkış Saati</th>
+                    <th>Varış Saati</th>
+                    <th>Fiyat</th>
+                    <th>Detaylar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reservation in Model)
+                {
+                    <tr>
+                        <td>@reservation.Id</td>
+                        <td>@reservation.Flight.FlightNumber</td>
+                        <td>@reservation.Flight.DepartureTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@reservation.Flight.ArrivalTime.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@reservation.TotalPrice.ToString("C")</td>
+                        <td>
+                            <button class="btn btn-outline-primary px-5 py-2" onclick="showReservationDetails('@reservation.Id')" style="border-radius: 25px; border: 2px solid #79717A; color: #79717A;">Detayları Gör</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<!-- Rezervasyon Detay Modalı -->
+<div class="modal fade" id="reservationDetailsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rezervasyon Detayları</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Bilet Türü</label>
+                        <select class="form-control">
+                            <option>Ekonomik</option>
+                            <option>Standart</option>
+                            <option>Business</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ek Hizmetler</label>
+                        <div>
+                            <input type="checkbox"> Ekstra Bagaj
+                            <input type="checkbox"> Koltuk Seçimi
+                            <input type="checkbox"> Yemek Seçeneği
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>İade Güvenliği</label>
+                        <select class="form-control">
+                            <option>İstenirse</option>
+                            <option>İstenmez</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Rezervasyonu Onayla</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showReservationDetails(id) {
+        $('#reservationDetailsModal').modal('show');
+    }
+</script>

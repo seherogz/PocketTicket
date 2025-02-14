@@ -14,10 +14,31 @@ namespace PocketTicket.Controllers
             _reservationsService = reservationsService;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public IActionResult Index(int flightId)
         {
-            var reservations = await _reservationsService.GetAllAsync();
-            return View(reservations);
+            // flightId'yi kullanarak gerekli işlemi yapabiliriz.
+            var flight = _reservationsService.GetByIdAsync(flightId); // Uçuşu alıyoruz.
+
+            if (flight == null)
+            {
+                ViewBag.Message = "Uçuş bulunamadı.";
+                return RedirectToAction("Index", "Flights");
+            }
+
+            // Rezervasyon işlemi yapabiliriz veya kullanıcıyı başka bir sayfaya yönlendirebiliriz.
+            // Örneğin, yeni bir rezervasyon oluşturabiliriz:
+            var reservation = new Reservation
+            {
+                FlightId = flightId,
+                ReservationDate = DateTime.Now,
+            };
+
+            // Rezervasyonu veritabanına kaydedelim
+            _reservationsService.AddAsync(reservation).Wait(); // Asenkron işlemi bekletiyoruz
+
+            // Yönlendirme
+            return RedirectToAction(nameof(Index)); // Rezervasyon işlemi tamamlandığında Index sayfasına dönüyoruz.
         }
 
         public async Task<IActionResult> Details(int id)
@@ -48,6 +69,7 @@ namespace PocketTicket.Controllers
             }
             return View(reservation);
         }
+
 
         public async Task<IActionResult> Edit(int id)
         {
