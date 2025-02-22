@@ -15,9 +15,9 @@ namespace PocketTicket.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(int flightId)
+        public async Task<IActionResult> Index(int flightId)
         {
-            var flight = _reservationsService.GetByIdAsync(flightId); // Uçuşu alıyoruz.
+            var flight = await _reservationsService.GetByIdAsync(flightId); // Uçuşu alıyoruz.
 
             if (flight == null)
             {
@@ -32,7 +32,7 @@ namespace PocketTicket.Controllers
                 ReservationDate = DateTime.Now,
             };
 
-            _reservationsService.AddAsync(reservation).Wait(); // Asenkron işlemi bekletiyoruz
+            _reservationsService.AddAsync(reservation);
 
             return RedirectToAction(nameof(Index)); // Rezervasyon işlemi tamamlandığında Index sayfasına dönüyoruz.
         }

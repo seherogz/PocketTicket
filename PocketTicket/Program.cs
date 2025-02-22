@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAirportsService, AirportsService>(); // IAirportsService'? DI konteynerine ekliyoruz
 builder.Services.AddScoped<IFlightsService, FlightService>();
+builder.Services.AddScoped<IReservationsService, ReservationsService>();
+
 
 
 
