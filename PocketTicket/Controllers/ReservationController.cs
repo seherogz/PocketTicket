@@ -34,7 +34,7 @@ namespace PocketTicket.Controllers
 
             _reservationsService.AddAsync(reservation);
 
-            return RedirectToAction(nameof(Index)); // Rezervasyon işlemi tamamlandığında Index sayfasına dönüyoruz.
+            return RedirectToAction(nameof(Index)); // Rezervasyon işlemi tamamlandığında Index sayfasına döneriz
         }
 
         public async Task<IActionResult> Details(int id)
